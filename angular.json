@@ -121,6 +121,46 @@
           }
         }
       }
+    },
+    "ng-canvas-painter": {
+      "root": "projects/ng-canvas-painter",
+      "sourceRoot": "projects/ng-canvas-painter/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng-canvas-painter/tsconfig.lib.json",
+            "project": "projects/ng-canvas-painter/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/ng-canvas-painter/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-canvas-painter/src/test.ts",
+            "tsConfig": "projects/ng-canvas-painter/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-canvas-painter/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-canvas-painter/tsconfig.lib.json",
+              "projects/ng-canvas-painter/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ng-canvas-painter-builder"
