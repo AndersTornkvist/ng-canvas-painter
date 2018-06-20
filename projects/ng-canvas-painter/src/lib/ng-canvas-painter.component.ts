@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'lib-ng-canvas-painter',
+  selector: 'ng-canvas-painter',
   templateUrl: './ng-canvas-painter.component.html',
   styleUrls: ['./ng-canvas-painter.component.scss'],
 })
