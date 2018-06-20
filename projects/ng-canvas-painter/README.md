@@ -17,7 +17,7 @@ npm install --save ng-canvas-painter
 ## Usage
 * Add `NgCanvasPainterModule` in your `app.module.ts`
 
-```javascript
+```js
 import {NgCanvasPainterModule} from 'ng-canvas-painter';
 
 @NgModule({
@@ -37,9 +37,9 @@ export class AppModule {
                 (isEmpty)="onIsEmptyChanged($event)"></canvas-painter>
 ```
 
-##### Options
+### Options
 
-```javascript
+```js
 {
   clipBounds: { x: 0, y: 0, width: 0, height: 0 }  // Set a region that can be drawn on
   canvasWidth: 600, // px
@@ -53,10 +53,14 @@ export class AppModule {
 ## Credits
 `ng-canvas-painter` is an open-source project.
 
-Special thanks to pwambach (https://github.com/pwambach/angular-canvas-painter) and their work with the AngularJS directive.
+Special thanks to [pwambach](https://github.com/pwambach/angular-canvas-painter) and their work with the AngularJS directive.
 
-Special thanks to shivs25 (https://github.com/shivs25/angular4-canvas-painter) and their work work with the Angular 4 directive.
-
+Special thanks to [shivs25](https://github.com/shivs25/angular4-canvas-painter) and their work work with the Angular 4 directive.
 
 ## License
 MIT
+
+## Contributing
+Pull requests and stars are always welcome. For bugs and feature requests, please create an issue.
+
+[Github](https://github.com/AndersTornkvist/ng-canvas-painter)
