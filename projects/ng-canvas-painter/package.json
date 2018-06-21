@@ -3,9 +3,13 @@
   "version": "0.0.1",
   "license": "MIT",
   "author": "Anders Törnkvist (https://github.com/AndersTornkvist)",
+  "bugs": {
+    "url": "https://github.com/AndersTornkvist/ng-canvas-painter/issues"
+  },
   "contributors": [
     "shivs25 (https://github.com/shivs25)"
   ],
+  "homepage": "https://github.com/AndersTornkvist/ng-canvas-painter#readme",
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
