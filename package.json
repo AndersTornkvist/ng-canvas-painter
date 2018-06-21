@@ -9,9 +9,9 @@
     "bump:minor": "cd projects/ng-canvas-painter && npm version minor && cd ../..",
     "bump:major": "cd projects/ng-canvas-painter && npm version major && cd ../..",
     "bump:patch": "cd projects/ng-canvas-painter && npm version patch && cd ../..",
-    "publish:patch": "npm run bump:patch && npm run build && npm run publish dist/ng-canvas-painter",
-    "publish:minor": "npm run bump:minor && npm run build && npm run publish dist/ng-canvas-painter",
-    "publish:major": "npm run bump:major && npm run build && npm run publish dist/ng-canvas-painter",
+    "publish:patch": "npm run bump:patch && npm run build && npm publish dist/ng-canvas-painter",
+    "publish:minor": "npm run bump:minor && npm run build && npm publish dist/ng-canvas-painter",
+    "publish:major": "npm run bump:major && npm run build && npm publish dist/ng-canvas-painter",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
