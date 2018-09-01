@@ -50,6 +50,34 @@ export class NgCanvasPainterComponent implements OnInit {
   private _ctx: any;
   private _ctxDynamic: any;
 
+  private _downHandler = (e: any): void => {
+    this.mousedown();
+  };
+
+  private _moveHandler = (e: any): void => {
+    this.paint(e);
+  };
+
+  private _upHandler = (e: any): void => {
+    this.mouseup();
+  };
+
+  private _paintStartHandler = (e: any): void => {
+    this.startTmpImage(e);
+  };
+
+  private _paintEndHandler = (e: any): void => {
+    this.copyTmpImage();
+  };
+
+  private _enterHandler = (e: any): void => {
+    this.mouseenter(e);
+  };
+
+  private _leaveHandler = (e: any): void => {
+    this.mouseleave(e);
+  };
+
   constructor() {
   }
 
@@ -252,35 +280,6 @@ export class NgCanvasPainterComponent implements OnInit {
     this._ctxDynamic.stroke();
     this._ctxDynamic.restore();
   }
-
-  private _downHandler(e: any): void {
-    this.mousedown();
-  }
-
-  private _moveHandler(e: any): void {
-    this.paint(e);
-  }
-
-  private _upHandler(e: any): void {
-    this.mouseup();
-  }
-
-  private _paintStartHandler(e: any): void {
-    this.startTmpImage(e);
-  }
-
-  private _paintEndHandler(e: any): void {
-    this.copyTmpImage();
-  }
-
-  private _enterHandler(e: any): void {
-    this.mouseenter(e);
-  }
-
-  private _leaveHandler(e: any): void {
-    this.mouseleave(e);
-  }
-
 
   private clip(): void {
     if (this.clipBounds && null != this.clipBounds &&
