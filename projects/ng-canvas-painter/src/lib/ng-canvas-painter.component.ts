@@ -1,15 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'ng-canvas-painter',
   templateUrl: './ng-canvas-painter.component.html',
   styleUrls: ['./ng-canvas-painter.component.scss'],
 })
-export class NgCanvasPainterComponent implements OnInit {
-
-  private PAINT_START: string;
-  private PAINT_MOVE: string;
-  private PAINT_END: string;
+export class NgCanvasPainterComponent implements OnInit, AfterViewInit {
 
   @ViewChild('canvas') canvas: ElementRef;
   @ViewChild('canvasDynamic') canvasDynamic: ElementRef;
@@ -38,6 +34,9 @@ export class NgCanvasPainterComponent implements OnInit {
   @Output()
   public isEmpty: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  private PAINT_START: string;
+  private PAINT_MOVE: string;
+  private PAINT_END: string;
 
   private _isTouch: boolean;
   private _mouseDown: boolean;
@@ -50,52 +49,54 @@ export class NgCanvasPainterComponent implements OnInit {
   private _ctx: any;
   private _ctxDynamic: any;
 
-  private _downHandler = (e: any): void => {
-    this.mousedown();
-  };
-
-  private _moveHandler = (e: any): void => {
-    this.paint(e);
-  };
-
-  private _upHandler = (e: any): void => {
-    this.mouseup();
-  };
-
-  private _paintStartHandler = (e: any): void => {
-    this.startTmpImage(e);
-  };
-
-  private _paintEndHandler = (e: any): void => {
-    this.copyTmpImage();
-  };
-
-  private _enterHandler = (e: any): void => {
-    this.mouseenter(e);
-  };
-
-  private _leaveHandler = (e: any): void => {
-    this.mouseleave(e);
-  };
+  private _downHandler: (e: any) => void;
+  private _moveHandler: (e: any) => void;
+  private _upHandler: (e: any) => void;
+  private _paintStartHandler: (e: any) => void;
+  private _paintEndHandler: (e: any) => void;
+  private _enterHandler: (e: any) => void;
+  private _leaveHandler: (e: any) => void;
 
   constructor() {
+    this._downHandler = (e) => {
+      this.mousedown();
+    };
+    this._moveHandler = (e) => {
+      this.paint(e);
+    };
+    this._upHandler = (e) => {
+      this.mouseup();
+    };
+    this._paintStartHandler = (e) => {
+      this.startTmpImage(e);
+    };
+    this._paintEndHandler = (e) => {
+      this.copyTmpImage();
+    };
+    this._enterHandler = (e) => {
+      this.mouseenter(e);
+    };
+    this._leaveHandler = (e) => {
+      this.mouseleave(e);
+    };
   }
 
   ngOnInit() {
-    this._isTouch = !!('ontouchstart' in window);
+    this._isTouch = ('ontouchstart' in window);
 
     this.PAINT_START = this._isTouch ? 'touchstart' : 'mousedown';
     this.PAINT_MOVE = this._isTouch ? 'touchmove' : 'mousemove';
     this.PAINT_END = this._isTouch ? 'touchend' : 'mouseup';
 
-    this._ctx = this.canvas.nativeElement.getContext('2d');
-    this._ctxDynamic = this.canvasDynamic.nativeElement.getContext('2d');
-
-    this.initListeners();
-
     this.undoLength.emit(0);
     this.redoLength.emit(0);
     this.isEmpty.emit(true);
+  }
+
+  ngAfterViewInit() {
+    this._ctx = this.canvas.nativeElement.getContext('2d');
+    this._ctxDynamic = this.canvasDynamic.nativeElement.getContext('2d');
+    this.initListeners();
   }
 
   public undo(): void {
@@ -155,16 +156,16 @@ export class NgCanvasPainterComponent implements OnInit {
       document.body.addEventListener('mousedown', this._downHandler);
       document.body.addEventListener('mouseup', this._upHandler);
 
-      //scope.$on('$destroy', removeEventListeners);
-
       this.canvasDynamic.nativeElement.addEventListener('mouseenter', this._enterHandler);
       this.canvasDynamic.nativeElement.addEventListener('mouseleave', this._leaveHandler);
     }
   }
 
   private removeEventListeners(): void {
-    document.body.removeEventListener('mousedown', this._downHandler);
-    document.body.removeEventListener('mouseup', this._upHandler);
+    if (!this._isTouch) {
+      document.body.removeEventListener('mousedown', this._downHandler);
+      document.body.removeEventListener('mouseup', this._upHandler);
+    }
   }
 
   private copyTmpImage(): void {
@@ -282,7 +283,7 @@ export class NgCanvasPainterComponent implements OnInit {
   }
 
   private clip(): void {
-    if (this.clipBounds && null != this.clipBounds &&
+    if (this.clipBounds &&
       this.clipBounds.x >= 0 && this.clipBounds.y >= 0 &&
       this.clipBounds.width > 0 && this.clipBounds.height > 0) {
 
