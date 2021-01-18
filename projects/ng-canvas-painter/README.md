@@ -1,10 +1,10 @@
 ng-canvas-painter
 =================
 
-Angular 6+ component to paint on a canvas on desktop or touch devices
+Angular 11+ component to paint on a canvas on desktop or touch devices
 
 ## Dependencies
-* [Angular](https://angular.io) (tested with 6.0.0)
+* [Angular](https://angular.io) (tested with 11.0.0)
 
 ## Installation
 
