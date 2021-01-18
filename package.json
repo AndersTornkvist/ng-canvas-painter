@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build ng-canvas-painter --prod && cp projects/ng-canvas-painter/README.md dist/ng-canvas-painter/ && cp LICENSE dist/ng-canvas-painter/",
+    "build": "ng build ng-canvas-painter --prod && cp README.md dist/ng-canvas-painter/ && cp LICENSE dist/ng-canvas-painter/",
     "publish": "npm run build && npm publish dist/ng-canvas-painter",
     "bump:minor": "cd projects/ng-canvas-painter && npm version minor && cd ../..",
     "bump:major": "cd projects/ng-canvas-painter && npm version major && cd ../..",
